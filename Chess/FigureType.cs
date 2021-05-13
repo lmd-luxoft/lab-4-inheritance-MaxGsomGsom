@@ -7,17 +7,13 @@
 
 namespace Chess
 {
-    public abstract class ChessFigure
+    public enum FigureType
     {
-        public FigureType Type { get; }
-        protected string currentCoord;
-
-        protected ChessFigure(FigureType type, string currentCoord)
-        {
-            this.Type = type;
-            this.currentCoord = currentCoord;
-        }
-
-        public abstract bool Move(string nextCoord);
+        ROOK,
+        KNIGHT,
+        BISHOP,
+        PAWN,
+        KING,
+        QUEEN
     }
 }

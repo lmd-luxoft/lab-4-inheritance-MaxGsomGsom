@@ -5,19 +5,22 @@
 // Otherwise this violation would be treated by law and would be subject to legal prosecution.
 // Legal use of the software provides receipt of a license from the right holder only.
 
+using System;
+
 namespace Chess
 {
-    public abstract class ChessFigure
+    public sealed class King: ChessFigure
     {
-        public FigureType Type { get; }
-        protected string currentCoord;
+        public King(string currentCoord): base(FigureType.KING, currentCoord) { }
 
-        protected ChessFigure(FigureType type, string currentCoord)
+        public override bool Move(string nextCoord)
         {
-            this.Type = type;
-            this.currentCoord = currentCoord;
+            return nextCoord[0] >= 'A'
+                   && nextCoord[0] <= 'H'
+                   && nextCoord[1] >= '1'
+                   && nextCoord[1] <= '8'
+                   && Math.Abs(nextCoord[0] - currentCoord[0]) <= 1
+                   && Math.Abs(nextCoord[1] - currentCoord[1]) <= 1;
         }
-
-        public abstract bool Move(string nextCoord);
     }
 }
